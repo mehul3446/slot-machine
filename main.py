@@ -1,6 +1,8 @@
 #global constants
 MIN_LINES = 1
 MAX_LINES = 3
+MIN_BET = 1
+MAX_BET = 100
 
 
 print("Begin Program")
@@ -34,6 +36,20 @@ def number_of_lines():
         else:
             print("please enter a valid value")
     return lines
+
+def get_bet():
+    while True:
+        bet = input("How much would you like to bet on each line? $")
+        if bet.isdigit():
+            bet = int(bet)
+            if MIN_BET <= bet <= MAX_BET:
+                #print("You have chosen to bet",bet, "on each line")
+                break
+            else: print(f"bet must be between ${MIN_BET} and ${MAX_BET}")
+
+        else:
+            print("please enter a valid value")
+    return bet 
  
 
 #Defining main
@@ -41,6 +57,9 @@ def main():
     balance = deposit()
     lines = number_of_lines()
     print(balance, lines)
+    bet = get_bet()
+    total = bet * lines
+    print(f"You have chosen to bet ${bet} on {lines} lines. Total bet: ${total}")
 
 #Calling main
 
