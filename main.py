@@ -4,6 +4,9 @@ MAX_LINES = 3
 MIN_BET = 1
 MAX_BET = 100
 
+ROWS = 3
+COLS = 3
+
 
 print("Begin Program")
 
@@ -13,7 +16,7 @@ def deposit():
         if amount.isdigit():
             amount = int(amount)
             if amount > 0:
-                print("You have deposited ", amount)
+                print(f"You have deposited ${amount}")
                 break
             else: print("amount must be greater than zero")
 
@@ -56,11 +59,24 @@ def get_bet():
 def main():
     balance = deposit()
     lines = number_of_lines()
-    print(balance, lines)
-    bet = get_bet()
-    total = bet * lines
+    #print(balance, lines)
+    while True:
+        bet = get_bet()
+        total = bet * lines
+        if total > balance:
+            print(f"You have insufficient balance. Current balance: ${balance}")
+        else:
+            break
     print(f"You have chosen to bet ${bet} on {lines} lines. Total bet: ${total}")
 
 #Calling main
 
 main()
+
+# to-do:
+# check if the balance is enough to cover the total bet.
+# a 3x3 slot machine with symbols for matching.
+# use symbols with a value to create columns.
+# generate random columns.
+# see if match and declare win.
+# calculate running balance.
